@@ -1,5 +1,5 @@
 import React from 'react'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Shelves from './Shelves.js'
 import Search from './Search.js'
@@ -15,11 +15,12 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false
   }
-
+ 
   render() {
+    
     return (
       <div className="app">
-         <Route path='/search' component={Search}/>
+       <Route path='/search' render={()=> (<Search newSearch={BooksAPI.search}/>)}/>
        <Route exact path='/' component={Shelves}/>
       </div>
     );

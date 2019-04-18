@@ -14,11 +14,11 @@ class Search extends Component {
     }))
     this.props.newSearch(query)
     .then((data)=> {this.setState((currState)=> ({
-        results: data,
+       results: data,
     }))})
+
   }
-  
-  
+    
   render() {
     const { query, results }= this.state
     return(
@@ -42,7 +42,8 @@ class Search extends Component {
               <ol className="books-grid">
                 {results.map((result)=> {
                   return(
-                  <Book image={result.imageLinks.smallThumbnail} title={result.title} authors={result.authors} id={result.id}/>
+                  <Book image={result.imageLinks ? (result.imageLinks.smallThumbnail): 
+                  (`http://via.placeholder.com/128x193?text=?`)} title={result.title} authors={result.authors} id={result.id}/>
                 )})}
               </ol>
             </div>

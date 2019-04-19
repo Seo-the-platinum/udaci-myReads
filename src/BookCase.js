@@ -4,27 +4,33 @@ import Shelves from './Shelves.js'
 class BookCase extends Component {
   
   state= {
+    books: [],
     currentlyReading: [],
     wantToRead: [],
     read: []
   }
   
- componentDidMount(){
-    const {books}= this.props
-  const cR= books.filter(book=> (
-    book.shelf=== 'currentlyReading'
+  componentDidMount() {this.props.getBooks
+  .then((data)=> {
+    this.setState((currState)=> ({
+      books: data
+     }))
+  const cR= data.filter(book=> (
+    book.shelf==='currentlyReading'
   ))
-  const wR= books.filter(book=> (
-    book.shelf=== 'wantToRead'
+  const wR= data.filter(book=> (
+    book.shelf==='wantToRead'
   ))
-  const r= books.filter(book=> (
+  const r= data.filter(book=> (
     book.shelf==='read'
   ))
   this.setState(currState=> ({
     currentlyReading: cR,
     wantToRead: wR,
-    read: r,
+    read: r
   }))
+   })
+
 }
 
 

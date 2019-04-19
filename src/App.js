@@ -7,24 +7,15 @@ import BookCase from './BookCase.js'
 
 
 class BooksApp extends React.Component {
-  state = {
-    books: []
-  }
-
- componentDidMount() { BooksAPI.getAll()
-  .then((data)=> {
-    this.setState((currState)=> ({
-      books: data
-     }))
-   })
-}
+  
+getBooks= BooksAPI.getAll()
  
   render() {
-    const { books }= this.state
+    
     return (
       <div className="app">
        <Route path='/search' render={()=> (<Search newSearch={BooksAPI.search}/>)}/>
-       <Route exact path='/' render={()=> (<BookCase books={books}/>)}/>
+       <Route exact path='/' render={()=> (<BookCase getBooks={this.getBooks}/>)}/>
       </div>
     );
   }

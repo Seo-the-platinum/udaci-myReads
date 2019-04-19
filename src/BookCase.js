@@ -9,7 +9,14 @@ class BookCase extends Component {
     wantToRead: [],
     read: []
   }
-  
+  moveBook= (book, shelf)=> {
+    console.log(book)
+    this.setState(currState=> ({
+     
+      })
+    )
+  }
+
   componentDidMount() {this.props.getBooks
   .then((data)=> {
     this.setState((currState)=> ({
@@ -30,17 +37,15 @@ class BookCase extends Component {
     read: r
   }))
    })
-
 }
-
 
   render() {
     const { currentlyReading, wantToRead, read}= this.state
     return(
     <div>
-      <Shelves shelf='Currently Reading' books={currentlyReading}/>
-      <Shelves shelf='Want to Read' books={wantToRead}/>
-      <Shelves shelf='Read' books={read}/>
+      <Shelves shelf='Currently Reading' books={currentlyReading} moveBook={this.moveBook}/>
+      <Shelves shelf='Want to Read' books={wantToRead} moveBook={this.moveBook}/>
+      <Shelves shelf='Read' books={read} moveBook={this.moveBook}/>
     </div>
     );
   }

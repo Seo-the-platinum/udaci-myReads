@@ -15,8 +15,9 @@ class Search extends Component {
     this.props.newSearch(query)
     .then((data)=> {this.setState((currState)=> ({
        results: data,
-    }))})
-
+      })
+    )})
+    
   }
     
   render() {

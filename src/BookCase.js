@@ -9,12 +9,32 @@ class BookCase extends Component {
     wantToRead: [],
     read: []
   }
-  moveBook= (book, shelf)=> {
-    console.log(book)
-    this.setState(currState=> ({
-     
-      })
-    )
+  moveBook= (book, newShelf, allShelfs)=> {
+    
+      const newBooks= this.state.books.map(allBooks=> {
+        const foundId= allShelfs[newShelf].find(bookId=> bookId === allBooks.id) 
+       if(foundId) {
+         allBooks.shelf=newShelf
+       }
+        return allBooks
+        })
+      this.addBooks(newBooks)
+  }
+  addBooks=(books)=> {
+    const cR= books.filter(book=> (
+    book.shelf==='currentlyReading'
+  ))
+  const wR= books.filter(book=> (
+    book.shelf==='wantToRead'
+  ))
+  const r= books.filter(book=> (
+    book.shelf==='read'
+  ))
+  this.setState(currState=> ({
+    currentlyReading: cR,
+    wantToRead: wR,
+    read: r
+  }))
   }
 
   componentDidMount() {this.props.getBooks
